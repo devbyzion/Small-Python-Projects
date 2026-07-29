@@ -18,7 +18,7 @@ while choice != 4:
         elif len(tasks) >0:
             remove_task = (int(input("What number task would you like to remove?: ")))
             if remove_task > len(tasks):
-                print("invalid input")
+                print("invalid input, you not that busy lol")
             else:
                 tasks.pop(remove_task -1)
                 print(tasks)
