@@ -3,7 +3,7 @@ import random
 comp_score = 0
 player_score = 0
 welcome = ("Welcome to Rock, Paper, Scissors!")
-menu = ("1. Rock,\n2. Paper,\n3. Scissors")
+menu = ("1. Rock. \n2. Paper.\n3. Scissors.")
 comp = ["Rock", "Paper", "Scissors"]
 
 while True:
