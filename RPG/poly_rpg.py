@@ -43,7 +43,7 @@ warrior = Warrior("Zion")
 mage = Mage("Ava")
 archer = Archer("Bob")
 
-heros = [warrior, mage, archer]
+heroes = [warrior, mage, archer]
 
-for hero in heros:
+for hero in heroes:
     hero.greet()
