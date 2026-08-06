@@ -8,10 +8,10 @@ class Player:
         print(f"Welcome {self.name}!")
     
     def stats(self):
-            print("\n --- Player Stats ---")
-            print(f"Name: {self.name}")
-            print(f"Health: {self.health}")
-            print(f"Mana: {self.mana}")
+        print("\n --- Player Stats ---")
+        print(f"Name: {self.name}")
+        print(f"Health: {self.health}")
+        print(f"Mana: {self.mana}")
             
 class Warrior(Player):
     def slash(self):
