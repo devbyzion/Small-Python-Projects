@@ -5,14 +5,19 @@ class Employee:
         
     def greet(self):
         print(f"Welcome {self.name}!")
-
-     
-    def get_salary(self):
+        
+    # this just lets the code run more naturally, when we call this later
+    # it runs the method. this is the getter()
+    @property
+    def salary(self):
         return self.__salary
     
-    def set_salary(self, update):
-        if update >= 0:
-            self.__salary = update  
+    # the setter(). still a method however with a @ property makes the calling of this method
+    # more natural. see later 
+    @salary.setter
+    def salary(self, value):
+        if value >= 0:
+            self.__salary = value  
             print(f"Your salary has been updated to {self.__salary}")
         
         else:
@@ -20,8 +25,11 @@ class Employee:
             
             
 employee = Employee("Zion")
-employee.set_salary(5000)
-salary = employee.get_salary()
 
 employee.greet()
-print(salary)
+# instead of (employee.set_salary(5000)), property allows the code to flow like this
+employee.salary = 5000
+# and here instead of employee.get_salary, the flow can be much more smoother
+print(employee.salary)
+# All of these still call the method, it just does it descretly 
+# allows the user to put in less code for the same outcome
