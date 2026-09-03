@@ -1,8 +1,13 @@
 import sqlite3
+from employee import Employee
 
-def create_table():
+def get_connection():
     connection = sqlite3.connect("Employee_System/database/employee.db")
     cursor = connection.cursor()
+    return connection, cursor
+
+def create_table():
+    connection, cursor = get_connection()
 
     cursor.execute(""" 
             CREATE TABLE IF NOT EXISTS employees (
@@ -17,8 +22,7 @@ def create_table():
     connection.close()  
 
 def add_employee(name, position, salary):
-    connection = sqlite3.connect("Employee_System/database/employee.db")
-    cursor = connection.cursor()
+    connection, cursor = get_connection()
     
     cursor.execute("""
                 INSERT INTO employees(name, position, salary)
@@ -28,20 +32,32 @@ def add_employee(name, position, salary):
     )
     
     connection.commit()
+    employee_id = cursor.lastrowid
     connection.close()
+    return employee_id
     
 def get_employees():
-    connection = sqlite3.connect("Employee_System/database/employee.db")
-    cursor = connection.cursor()
+    connection,cursor = get_connection()
     
     cursor.execute("SELECT * FROM employees")
-    employees = cursor.fetchall()
+    
+    rows = cursor.fetchall()
+    employees = []
+    
+    for row in rows:
+        employees.append(Employee(
+            row[0],
+            row[1],
+            row[2],
+            row[3]
+            )
+        )
+        
     connection.close()
     return employees
 
 def get_employee(id):
-    connection = sqlite3.connect("Employee_System/database/employee.db")
-    cursor = connection.cursor()
+    connection,cursor = get_connection()
     
     cursor.execute("""
                    SELECT * FROM employees 
@@ -49,13 +65,22 @@ def get_employee(id):
                    (id,)
     )
     
-    employee = cursor.fetchone()
+    row = cursor.fetchone()
     connection.close()
+    
+    if row is not None:
+        employee = Employee(
+            row[0],
+            row[1],
+            row[2],
+            row[3]
+        )
+    else:
+        return None
     return employee
 
 def update_employee(position, salary, id):
-    connection = sqlite3.connect("Employee_System/database/employee.db")
-    cursor = connection.cursor()
+    connection,cursor = get_connection()
     
     cursor.execute("""
                    UPDATE employees
@@ -68,8 +93,7 @@ def update_employee(position, salary, id):
     connection.close()
     
 def delete_employee(id):
-    connection = sqlite3.connect("Employee_System/database/employee.db")
-    cursor = connection.cursor()
+    connection,cursor = get_connection()
     
     cursor.execute("""
                    DELETE FROM employees
@@ -79,3 +103,5 @@ def delete_employee(id):
     
     connection.commit()
     connection.close()
+    
+   
