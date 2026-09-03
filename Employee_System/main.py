@@ -30,9 +30,9 @@ while True:
         position = input("Position: ")
         salary = int(input("Salary: R "))
         
-        add_employee(name, position, salary)
+        employee_id = add_employee(name, position, salary)
         
-        print(f"\nEmployee {name} has been created\n")
+        print(f"\nEmployee {name} has been created and assigned ID {employee_id}\n")
         continue
         
     elif choice == 2:
@@ -44,7 +44,7 @@ while True:
             continue
         
         for employee in employees:
-            print(f"ID: {employee[0]} \nName: {employee[1]} \nPosition: {employee[2]} \nSalary: R{employee[3]:,}\n")
+            print(f"ID: {employee.id} \nName: {employee.name} \nPosition: {employee.position} \nSalary: R{employee.salary:,}\n")
         continue
     
     elif choice == 3:
@@ -59,7 +59,7 @@ while True:
             continue
     
         print("\n=== EMPLOYEE FOUND ===\n")
-        print(f"ID: {employee[0]} \nName: {employee[1]} \nPosition: {employee[2]} \nSalary: R{employee[3]:,}")
+        print(f"ID: {employee.id} \nName: {employee.name} \nPosition: {employee.position} \nSalary: R{employee.salary:,}")
         continue
     
     elif choice == 4:
@@ -72,10 +72,10 @@ while True:
         if employee is None:
             print("Employee not found")
             continue
-        print(f"ID: {employee[0]} \nName: {employee[1]} \nPosition: {employee[2]} \nSalary: R{employee[3]:,}")
+        print(f"ID: {employee.id} \nName: {employee.name} \nPosition: {employee.position} \nSalary: R{employee.salary:,}")
         
-        position = employee[2]
-        salary = employee[3]
+        position = employee.position
+        salary = employee.salary
         emp_menu = ("\n1. Position \n2. Salary")
         print(emp_menu)
         choice = int(input("What would you like to update?\n"))
@@ -84,7 +84,7 @@ while True:
         if choice == 1:
             position = input("Enter new position: ")
             
-            print(f"ID: {employee[0]} \nName: {employee[1]} \nPosition: {employee[2]} -- {position} \nSalary: R{employee[3]:,} -- {employee[3]:,}")
+            print(f"ID: {employee.id} \nName: {employee.name} \nPosition: {employee.position} -- {position} \nSalary: R{employee.salary:,}")
             
             confirm = input("YOU ARE ABOUT TO UPDATE AN EMPLOYEE \nARE YOU SURE? (Y/N)\n")
             
@@ -96,8 +96,8 @@ while True:
                 continue
             
         elif choice == 2:
-            salary = int(input("Enter new salary: "))
-            print(f"ID: {employee[0]} \nName: {employee[1]} \nPosition: {employee[2]} -- {employee[2]} \nSalary: R{employee[3]:,} -- {salary:,}")
+            salary = int(input("Enter new salary: R "))
+            print(f"ID: {employee.id} \nName: {employee.name} \nPosition: {employee.position} \nSalary: R{employee.salary:,} -- {salary:,}")
             
             confirm = input("YOU ARE ABOUT TO UPDATE AN EMPLOYEE \nARE YOU SURE? (Y/N)\n")
             if confirm.upper() == "Y":
@@ -116,7 +116,7 @@ while True:
         if employee is None:
                     print("Employee not found")
                     continue
-        print(f"ID: {employee[0]} \nName: {employee[1]} \nPosition: {employee[2]} \nSalary: R{employee[3]:,}")
+        print(f"ID: {employee.id} \nName: {employee.name} \nPosition: {employee.position} \nSalary: R{employee.salary:,}")
                 
         confirm = input ("\nYOU ARE ABOUT TO DELETE A EMPLOYEE\n ARE YOU SURE (Y/N)\n")
         
